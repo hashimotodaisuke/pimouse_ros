@@ -5,7 +5,6 @@ import rosnode, rospy
 import time
 from pimouse_ros.msg import LightSensorValues
 
-
 class LightsensorTest(unittest.TestCase)  #inheritant unittest.TestCase for using function assertXxx
 	def setUp(self):
 		self.count = 0
