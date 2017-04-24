@@ -3,7 +3,6 @@
 import unittest, rostest
 import rosnode, rospy
 import time
-# to use LightSensorValues in pimouse_ros.msg (Âmsg/LightSensorValues.msg)
 from pimouse_ros.msg import LightSensorValues
 
 
