@@ -33,7 +33,7 @@ class LightsensorTest(unittest.TestCase):
 		rospy.get_param('lightsensors_freq' ,10)
 		time.sleep(2)
 		devfile = "/dev/rtlightsensor0"
-		with open (devfile, w) as f:
+		with open (devfile, "w") as f:
 			try:
 				f.write("-1 0 123 4321\n")
 			except IOError:
