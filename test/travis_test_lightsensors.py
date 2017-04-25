@@ -37,7 +37,7 @@ class LightsensorTest(unittest.TestCase):
 			try:
 				f.write("-1 0 123 4321\n")
 			except IOError:
-				rospy.logerr("can not write to" + devfile
+				rospy.logerr("can not write to" + devfile)
 		time.sleep(3)
 		#confirm callback function called one time at least and get value
 		self.assertFalse(self.count==0, "cannot subscribe the topic")
