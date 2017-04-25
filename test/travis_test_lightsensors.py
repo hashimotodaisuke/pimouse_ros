@@ -36,7 +36,7 @@ class LightsensorTest(unittest.TestCase):
 		with open (devfile, w) as f:
 			try:
 				f.write("-1 0 123 4321\n")
-			except IOError
+			except IOError:
 				rospy.logerr("can not write to" + devfile
 		time.sleep(3)
 		#confirm callback function called one time at least and get value
