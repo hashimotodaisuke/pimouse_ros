@@ -31,7 +31,7 @@ class MotorTest(unittest.TestCase): #inheritant unittest.TestCase to use assertX
 		m = Twist()
 		m.linear.x = 0.1414
 		m.angular.z = 1.57	#then this speed and w-speed make left_hz 200hz and right_hz 600Hz
-		for i in range(10)
+		for i in range(10):
 			pub.publish(m)
 			time.sleep(0.1)
 		
