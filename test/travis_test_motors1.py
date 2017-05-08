@@ -43,7 +43,7 @@ class MotorTest(unittest.TestCase): #inheritant unittest.TestCase to use assertX
 		self.file_check("rtmotor_raw_l0", "0", "raw_left doesn't stop after 1[s]")
 		self.file_check("rtmotor_raw_r0", "0", "raw_right doesn't stop after 1[s]")
 	
-if __name__ == '__main__'
+if __name__ == '__main__':
 	time.sleep(3)
 	rospy.init_node('travis_test_motors')
 	rostest.rosrun('pimouse_ros', 'travis_test_motors', MotorTest)
