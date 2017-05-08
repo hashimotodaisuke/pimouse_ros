@@ -66,7 +66,7 @@ class MotorTest(unittest.TestCase): #inheritant unittest.TestCase to use assertX
 		self.assertEqual(ret.message, "ON", "motor on wrong message")
 		with open("/dev/rtmotoren0", 'r') as f:
 			data = f.readline()
-			self.assertEqual(data, "0\n", "wrong value in rtmotor0 at motor on")
+			self.assertEqual(data, "1\n", "wrong value in rtmotor0 at motor on")
 
 if __name__ == '__main__':
 	rospy.init_node('travis_test_motors')
