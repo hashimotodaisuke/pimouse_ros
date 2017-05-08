@@ -8,15 +8,16 @@ from geometry_msgs.msg import Twist    #use Twist structure
 
 class MotorTest(unittest.TestCase): #inheritant unittest.TestCase to use assertXXX functions
 	def file_check(self, dev, value, message):
-		with open("/dev/" + dev, "r") as f:
-			self.assertEqual(f.readline(), str(value)+"\n", message)
-	
-	def test_node_exist(self,):
+		with open("/dev/" + dev, 'r') as f:
+			line = f.readline()
+			# line = message
+			self.assertEqual(line, str(value)+"\n", message)
+	def test_node_exist(self):
 		nodes = rosnode.get_node_names()
 		self.assertIn('/motors', nodes, "node does not exist")
 
 	def test_put_freq(self):
-		pub = rospy.PUblisher('/motor_raw', MotorFreqs)
+		pub = rospy.Publisher('/motor_raw', MotorFreqs)
 		m = MotorFreqs()
 		m.left_hz = 123
 		m.right_hz = 456
@@ -35,13 +36,13 @@ class MotorTest(unittest.TestCase): #inheritant unittest.TestCase to use assertX
 			pub.publish(m)
 			time.sleep(0.1)
 		
-		self.file_check("rtmotor_raw_l0", "200", "wrong linear x value from cmd_vel")
-		self.file_check("rtmotor_raw_r0", "600", "wrong angular.z  value from cmd_vel")
+		self.file_check("rtmotor_raw_l0", 200, "wrong linear x value from cmd_vel")
+		self.file_check("rtmotor_raw_r0", 600, "wrong angular.z  value from cmd_vel")
 		
 		time.sleep(1.1)
 		
-		self.file_check("rtmotor_raw_l0", "0", "raw_left doesn't stop after 1[s]")
-		self.file_check("rtmotor_raw_r0", "0", "raw_right doesn't stop after 1[s]")
+		self.file_check("rtmotor_raw_l0", 0, "raw_left doesn't stop after 1[s]")
+		self.file_check("rtmotor_raw_r0", 0, "raw_right doesn't stop after 1[s]")
 	
 if __name__ == '__main__':
 	time.sleep(3)
