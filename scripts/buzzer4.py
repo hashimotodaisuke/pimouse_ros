@@ -5,7 +5,7 @@ import rospy, actionlib
 from std_msgs.msg import UInt16
 from pimouse_ros.msg import MusicAction, MusicResult, MusicFeedback
 # refer action/Music.action file. 
-# MusicGoal     uint16[], float32[]  this is goal. this is not used in this file. the client use it.
+# MusicAction   uint16[], float32[]  this is goal
 # ---
 # MusicRessult  bool                 this is result
 # ---
@@ -23,28 +23,7 @@ def write_freq(hz=0):
 def recv_buzzer(data):
 	write_freq(data.data)
 
-def exec_music(goal):
-	r = MusicResult()
-	fb = MusicFeedback()
-	#input value of goal.freqs to i and input arg index of (current) goal.freqs to f 
-	for i, f in enumerate(goal.freqs):
-		fb.remaining_steps = len(goal.freqs) - i
-		music.publish_feedback(fb)
-		
-		if music.is_preempt_requested():
-			write_freq(0)
-			r.finished = False
-			# occur preemption then call set preempted method and stop music
-			music.set_preempted(r)
-			return
-		
-		write_freq(f)
-		# sleep for duration
-		rospy.sleep(1.0 if i >=len(goal.durations) else goal.durations[i])
-	
-	# execute all freq then call set_succeeded method 
-	r.finished = True
-	music.set_succeeded(r)
+def exec_music(goal):pass
 
 if __name__ == '__main__':
 	# register client node "buzzer" with the master node
